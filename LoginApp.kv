@@ -1,0 +1,243 @@
+WindowScreenManager:
+    EntryScreen:
+    SignInScreen:
+    SignUpScreen:
+    HomeScreen:
+    FirstScreen:
+    SecondScreen:
+    ThirdScreen:
+<EntryScreen>
+    name: "entry"
+    Screen:
+        Image:
+            source: "img.png"
+            allow_stretch: True
+            keep_ratio: False
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: 30
+                spacing: 10
+                size: root.width, root.height
+                MDLabel:
+                    text: ""
+                    halign: "center"
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: 10
+                    size: root.width, root.height
+                    MDFloatLayout:
+                        RoundButton:
+                            text: "SignIn"
+                            size_hint: 0.25, 0.25
+                            pos_hint: {"center_x": 0.35, "top": 0.30}
+                            on_press:
+                                app.root.current = "signup"
+                                root.manager.transition.direction = "left"
+                        RoundButton:
+                            text: "SignUp"
+                            size_hint: 0.25, 0.25
+                            pos_hint: {"center_x":0.65, "top":0.30}
+                            on_press:
+                                app.root.current = "signup"
+                                root.manager.transition.direction = "left"
+<RoundButton@Button>
+    bold : True
+    markup : True
+    color : "pink"
+    outline_color : "black"
+    outline_width : 3
+    background_color : 0,0,0,0
+    canvas.before:
+        Color:
+            rgba : 135/255,206/255,160/255,1
+        RoundedRectangle:
+            size : self.size
+            pos : self.pos
+            radius : [25]
+<SignInScreen>
+    name: "signin"
+    ScreenManager:
+        Screen:
+            MDBoxLayout:
+                orientation : "vertical"
+                size : root.width, root.height
+                MDTopAppBar:
+                    title : "SignIn"
+                    left_action_items : [["arrow-left", lambda x:app.Back()]]
+                MDFloatLayout:
+                    Image:
+                        source : "img_1.png"
+                        allow_stretch : True
+                        keep_ratio : False
+                    MDCard:
+                        size_hint : None, None
+                        size : 380,550
+                        halign : "center"
+                        pos_hint : {"center_x":0.80, "center_y":0.5}
+                        elevation : 5
+                        spacing : 10
+                        padding : 20
+                        orientation : "vertical"
+                        MDLabel:
+                            text : "SignIn"
+                            halign : "center"
+                            bold : True
+                            font_size : 40
+                        MDTextField:
+                            hint_text : "G-Mail"
+                            id : gmail
+                            size_hint_x : None
+                            icon_right : "gmail"
+                            width : 250
+                            pos_hint : {"center_x":0.5}
+                        MDTextField:
+                            hint_text : "Password"
+                            id : password
+                            size_hint_x : None
+                            icon_right : "eye-off"
+                            width : 250
+                            pos_hint : {"center_x":0.5}
+                        MDLabel:
+                            id : ins_label
+                            color : "red"
+                            halign : "center"
+                            font_size : 20
+                        MDRoundFlatButton:
+                            text : "SignIn"
+                            bold : True
+                            text_color : "black"
+                            pos_hint : {"center_x": 0.5}
+                            md_bg_color : 87/255, 131/255, 219/255, 255/255
+                            on_press:
+                                app.root.current = "home"
+                                root.manager.transition.direction = "left"
+                        MDRoundFlatButton:
+                            text : "CLEAR"
+                            text_color : "black"
+                            bold : True
+                            pos_hint : {"center_x": 0.5}
+                            md_bg_color : 87/255, 131/255, 219/255, 255/255
+                            on_press: root.Clear()
+<SignUpScreen>
+    name : "signup"
+    ScreenManager:
+        Screen:
+            MDBoxLayout:
+                orientation: "vertical"
+                size : root.width, root.height
+                MDTopAppBar:
+                    title: "SignUp"
+                    left_action_items: [["arrow-left", lambda x: app.Back()]]
+                MDFloatLayout:
+                    Image:
+                        source: "img_1.png"
+                        allow_stretch : True
+                        keep_ratio: False
+                    MDCard:
+                        size_hint: None, None
+                        size: 380, 580
+                        halign: "center"
+                        pos_hint: {"center_x":0.80, "center_y": 0.5}
+                        elevation: 5
+                        spacing: 10
+                        padding: 20
+                        orientation: "vertical"
+                        MDLabel:
+                            text: "SignUp"
+                            halign: "center"
+                            bold: True
+                            font_size: 40
+                        MDTextField:
+                            hint_text: "G-Mail"
+                            id: gmail
+                            size_hint_x: None
+                            icon_right: "gmail"
+                            width: 250
+                            pos_hint: {"center_x":0.5}
+                        MDTextField:
+                            hint_text: "Password"
+                            id: password
+                            size_hint_x: None
+                            icon_right: "eye-off"
+                            width: 250
+                            pos_hint: {"center_x":0.5}
+                        MDLabel:
+                            text: ""
+                            id: error
+                            font_size: 25
+                            halign: "center"
+                            color: 1, 0, 0, 1
+                        MDRectangleFlatButton:
+                            text: "Get OTP"
+                            #size_hint: 0.2, 0.1
+                            pos_hint: {"center_x":0.5, "center_y":0.5}
+                            on_press: root.SendMail()
+                        MDTextField:
+                            hint_text: "OTP"
+                            id: otp
+                            size_hint_x: None
+                            icon_right: "gmail"
+                            width: 250
+                            pos_hint: {"center_x":0.5}
+                        MDRectangleFlatButton:
+                            text: "Submit"
+                            #size_hint: 0.2, 0.1
+                            pos_hint: {"center_x":0.5, "center_y":0.5}
+                            on_press: root.OTP_Verify()
+                        MDLabel:
+                            text: ""
+
+
+<HomeScreen>
+    name: "home"
+    ScreenManager:
+        Screen:
+            MDBoxLayout:
+                orientation: "vertical"
+                MDTopAppBar:
+                    title: "Online Shopping"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("toggle")]]
+                    right_action_items: [["dots-vertical"]]
+                    pos_hint: {"top": 1}
+                MDBottomNavigation:
+                    MDBottomNavigationItem:
+                        name: "screen1"
+                        text: "flip kart"
+                        icon: "shopping"
+                        Image:
+                            source: "img_2.png"
+                            allow_stretch: True
+                            keep_ratio: False
+                    MDBottomNavigationItem:
+                        name: "screen2"
+                        text: "Amazon"
+                        icon: "shopping"
+                        Image:
+                            source: "img_3.png"
+                            allow_stretch: True
+                            keep_ratio: False
+                    MDBottomNavigationItem:
+                        name: "screen3"
+                        text: "Meesho"
+                        icon: "shopping"
+                        Image:
+                            source: "img_4.png"
+                            allow_stretch: True
+                            keep_ratio: False
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        radius: [0]
+        MDNavigationDrawerMenu:
+            MDNavigationDrawerItem:
+                text: "Account"
+                icon: "account"
+            MDNavigationDrawerItem:
+                text: "G-Mail"
+                icon: "gmail"
+            MDNavigationDrawerItem:
+                text: "Logout"
+                icon: "logout"
+                on_press:
+                    app.root.current = "entry"
+                    root.manager.transition.direction = "right"

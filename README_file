@@ -1,0 +1,20 @@
+# Assignment
+I Have Created A cross plat-form Application and In this Application didn't contain any data base
+After successfully signup we will go to signin screen
+in that screen if we enter anything we can go App Home Screen because i didn't use any data
+base for storing Login Credentials
+
+## Requirements
+
+- Python 3.12 (we can use any python version to execute these python files)
+
+## Installation
+
+-IDEs
+    Pycharm (for run python codes)
+    Modules:
+        KivyMD(for Creating GUI)
+        smtplib(for connecting server)
+        emailmessage(for send OTP)
+
+
