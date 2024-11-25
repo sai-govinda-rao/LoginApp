@@ -24,8 +24,8 @@ class SignUpScreen(Screen):
                 otp += str(random.randint(0, 9))
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            from_mail = "tiruvamabc@gmail.com"
-            server.login(from_mail, "mrti tecv rgsf trvq")
+            from_mail = "muhammedrafnasvk@gmail.com"
+            server.login(from_mail, "1234Rafnas")
 
             msg = EmailMessage()
             msg["subject"] = "OTP Verification"
